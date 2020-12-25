@@ -1,0 +1,43 @@
+doctype html
+html(lang='it')
+  head
+    meta(charset='utf-8')
+    meta(meta name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title
+    link(rel="shortcut icon", href="/images/icourca.png")
+    link(rel='stylesheet', href='/stylesheets/skeleton.css')
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
+    
+  body
+    div(class='container' id='layout-container')
+      div(class='row' class='navbar-row')
+        nav(id='nav')
+          ul(class='u-pull-right')
+            li
+              a(id='home' href='/') Home
+            li
+              a(href='#') Chi siamo
+            li
+              a(href='/downloads/') Downloads
+            li
+              a(href='/esercitazioni/') Esercitazioni
+            li
+              a(href='/simulazionesami/') Simulazione Esami
+            li
+              a(href='/contatti/') Contatti
+            li
+              a(href='/areariservata/') Area riservata
+        
+
+    block content
+
+    footer
+      div(class='container')
+        div(class='row')
+          div(class='twelve columns')
+            hr
+          div(class='row')
+              p(class='u-pull-left') U.R.C.A. sezione di Cremona in collaborazione con U.N. Enalacaccia P.T. sezione di Cremona
+              img(src='/images/logo_enalcaccia_piccolo.png' class='u-pull-right')

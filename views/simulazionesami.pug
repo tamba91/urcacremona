@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    script(type='text/javascript' src='/javascripts/paginaEsami.js')
+    div(class='container')
+        div(class='row')
+            div(class='nine columns')
+                h4 Simulazione Esami
+                p Selezionare la prova d'esame desiderata per svolgere una simulazione con i quiz forniti da Regione Lombardia. Le domande sono estratte in modo casuale rispettando i quantitativi per materia previsti e riportati nella tabella sottostante
+            div(class='three columns')
+                img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo3.png")
+        br
+        form(method='GET' id='examform' action='init')
+            div(class='row')
+                div(class='six columns')
+                    label(for='exams-list') Esame
+                    select(class='u-full-width' id='exams-list' name='esame' form='examform')
+                        each exam in esami
+                            option(val= exam)= exam
+                div(class='six columns')
+                    br
+                    label
+                    input(type='submit' class='button-primary' value='seleziona' id='selecExamButton')
+
+        table(class='u-full-width')
+            caption Descrizione esame 
+            thead
+                tr
+                    th Argomenti
+                    th Numero domande
+            tbody(id='info-table')
+        hr
+                
+                

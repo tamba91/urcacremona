@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div(class='container' id='download-box')
+        div(class='row')
+            div(class='nine columns')
+                h4
+                    i(class="fa fa-download" aria-hidden="true")
+                    | Downloads
+                if files
+                    ul 
+                        each val, index in files
+                            li 
+                                i(class="fa fa-download" aria-hidden="true")
+                                    a(href=files[index] download = 'download')= val.split('_-_')[1]    
+            div(class='three columns')
+                img(class='u-max-full-width' src="/images/urca-logo3.png") 
+        hr
+                

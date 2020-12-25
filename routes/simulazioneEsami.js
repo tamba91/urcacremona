@@ -1,0 +1,34 @@
+var express = require('express');
+var router = express.Router();
+var examController = require('../controllers/examController')
+
+router.get('/', function (req, res, next) {
+    examController.getExams()
+        .then(function (exams) {
+            res.render('simulazionesami', { title: 'Simulazione Esami', esami: exams });
+        })
+})
+
+router.get('/init', function (req, res, next) {
+    examController.getExamByType(req.query.esame)
+        .then(function (arrayOfPromises) {
+            Promise.all(arrayOfPromises).then(function (result) {
+                var questions = result.flat();
+                var answers = questions.map(val => {
+                    return ({ name: val._id, value: val.Risposta_Esatta })
+                });
+                res.render('training', { title: `Esame: ${req.query.esame}`, questionList: questions, answerList: JSON.stringify(answers) });
+            }
+            )
+        });
+
+})
+
+router.get('/examinfo/:type', function(req, res, next){
+    examController.getExamInfoByType(req.params.type)
+        .then(function(examInfo){
+            res.json(examInfo);
+        })
+})
+
+module.exports = router;

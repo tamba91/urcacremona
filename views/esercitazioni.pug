@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    script(type='text/javascript' src='/javascripts/paginaEsercitazioni.js')
+    div(class='container')
+        div(class='row')
+            div(class='nine columns')
+                h4 Esercitazioni
+                p In questa pagina sono disponibili, suddivisi per materia, i quiz a risposta multipla forniti da Regione Lombardia per l'ottenimento della abilitazione al censimento e al prelievo selettivo degli ungulati e alla caccia al cinghiale in forma collettiva. Selezionare un argomento e la quantità di domande desiderata, dopo aver studiato la parte teorica relativa.
+            div(class='three columns')
+                img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo3.png")
+        br
+        
+        br
+        form(method='GET' id='argsform' action='init')
+            div(class='row')
+                div(class='six columns')
+                    label(for='arguemnts-list') Argomento
+                    select(class='u-full-width' id='arguemnts-list' name='argomento' form='argsform')
+                            each val in argomenti
+                                option(value= val)= val
+                div(class='three columns')
+                    label(for='number-list') Quantità
+                    select(class='u-full-width' id='number-list' name='num' form='argsform')
+
+                div(class='three columns')
+                    br
+                    label
+                    input(type='submit' class='button-primary' value='seleziona' id='selecArgBUtton')
+        
+        hr

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    script(type='text/javascript').
+        var answerList = !{answerList}
+    script(type='text/javascript' src='/javascripts/correzione.js')
+    div(class='container')
+        h4= title
+        br
+        form(id='trainingForm')
+            each question, i in questionList
+                div(class='u-full-width' class='question-box')
+                    span(class='question-arg')
+                        h6= question.Argomento
+                    fieldset
+                        legend(class='question')= `${i + 1}) ${question.Domanda}` 
+                        each risposta, j in question.Risposte
+                            label(class='answer')
+                                input(type='radio' name=question._id value=j)
+                                span(class="label-body")= risposta
+                hr
+                              
+            input(class='button-primary' class='u-full-width' type='submit' value='TERMINA e CORREGGI' id='submit-button')
+        div(class='row')
+            div(class='twelve columns')
+                p(id='right-answers')
+                p(id='wrong-answers')
+                    

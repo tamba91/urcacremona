@@ -1,0 +1,187 @@
+html {
+  background: url(/images/pexels-pixabay-326240.jpg) no-repeat center center fixed;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* nav ul li{
+  margin-top: 1.5rem;
+} */
+
+hr {
+  border-top: 1px solid #626746;
+  margin-bottom: 0px;
+}
+
+i {
+  margin-right: 5px;
+}
+
+input {
+  margin-bottom: 5px;
+}
+
+.info-weather {
+  background-color: lightskyblue;
+  margin: 0px;
+  padding: 3px;
+  font-size: x-small;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+}
+
+.weather-icon>img {
+  max-width: 35%;
+  height: auto;
+}
+
+article {
+  background-color: white;
+  padding: 3px;
+}
+
+.container {
+  background-color: #e6decc;
+  padding: 5px;
+  opacity: 0.9;
+}
+
+.navbar-row {
+  margin: 0;
+  padding: 0;
+  background-color: #2F3837;
+}
+
+#nav ul li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+#nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+#nav a:hover {
+  color: #FF5434;
+}
+
+#download-box ul {
+  list-style: none;
+}
+
+#download-box ul li a {
+  padding: 5px;
+  text-decoration: none;
+}
+
+#checkbox-container label{
+  font-weight: normal;
+}
+
+.button.button-primary, button.button-primary, input[type=button].button-primary, input[type=reset].button-primary, input[type=submit].button-primary {
+  background-color: #b6b07b;
+  border: none;
+}
+
+.button.button-primary:hover, button.button-primary:hover, input[type=button].button-primary:hover, input[type=reset].button-primary:hover, input[type=submit].button-primary:hover {
+  background-color: #b6b07b;
+  border: 2px solid;
+}
+
+.answer {
+  font-weight: normal;
+  font-size: smaller;
+}
+
+.question-arg {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#layout-container {
+  margin-top: 20px;
+  border-radius: 6px 6px 0 0;
+  background-color: #2F3837;
+}
+
+#main-title {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #3d6b37;
+  color: white;
+}
+
+#main-title h3 {
+  padding-top: 20px;
+}
+
+footer .container {
+  border-radius: 0 0 6px 6px;
+}
+
+.post-title {
+  color: #FF5434;
+}
+
+.post-title a {
+  color: #FF5434;
+  text-decoration: none;
+}
+
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.post-image {
+  border: 2px solid #FF5434;
+  margin-top: 20px;
+}
+
+.prequel-image {
+  max-width: 30%;
+  height: auto;
+}
+
+.post-date {
+  font-size: 1em;
+  color: #999;
+  font-weight: 500
+}
+
+.err-msg {
+  background-color: #FF6347;
+  padding-left: 5px;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 961px) {
+  html {
+    background: none;
+  }
+  input[type=radio] {
+    display: none;
+  }
+  input[type=radio]:checked+span {
+    background-color: sandybrown;
+  }
+  .container {
+    padding: 2px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .info-weather img {
+    display: inline;
+  }
+  .urca-banner {
+    display: none;
+  }
+}

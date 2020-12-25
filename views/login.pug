@@ -1,0 +1,24 @@
+extends layout
+
+block content   
+    div(class='container')
+        div(class='row')
+            div(class='nine columns')
+                h4
+                    i(class="fa fa-sign-in" aria-hidden="true") 
+                    | Login
+                form(method='POST' action='/users/login/')
+                    input(type="email" id='email' placeholder='e-mail' name='email' required='required' class='u-full-width')
+                    input(type="password" id='password' placeholder='Password' name='password' required='required' class='u-full-width')
+                    button(type="submit" class='button-primary' class='u-full-width' id='login-button') 
+                        i(class="fa fa-sign-in" aria-hidden="true") 
+                        span Accedi
+                    if errLoginMsg.length > 0
+                        p(class='err-msg')
+                            i(class="fa fa-exclamation-triangle" aria-hidden="true")
+                            | #{errLoginMsg}
+            div(class='three columns')
+                img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo3.png")
+        
+                
+            

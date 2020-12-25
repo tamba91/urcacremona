@@ -1,0 +1,105 @@
+extends layout
+
+block content
+  script(src='/javascripts/tinymce/tinymce.min.js')
+  script(src='/javascripts/aris.js')
+  div(class='container')
+    div(class='row')
+      h4(class='u-pull-left')= title
+      a(href='/users/logout' class='button button-primary' class='u-pull-right')
+        h4
+          i(class='fa fa-sign-out' aria-hidden='true')
+    div(class='row')
+      h6 Ciao #{firstName},
+      a(href='#' id='passwd-form-show') Vuoi cambiare la password?      
+      h6 Cambia la password
+      form(method='POST' action='/areariservata/changepasswd')
+        input(type="password" id='old-password' placeholder='Vecchia password' name='oldPassword' required='required' class='u-full-width')
+        input(type="password" id='new-password' placeholder='Nuova password' name='newPassword' required='required' class='u-full-width')
+        input(type="password" id='new-password2' placeholder='Conferma la nuova password' name='newPassword2' required='required' class='u-full-width')
+        button(type='submit' class='button-primary' class = 'u-full-width' id='change-passwd') Cambia la password
+        if errMsgCpwd.length > 0
+          p(class='err-msg')
+            i(class="fa fa-exclamation-triangle" aria-hidden="true")
+            | #{errMsgCpwd}
+    div(class='row')
+      h5
+        i(class="fa fa-users" aria-hidden="true") 
+        span Gestione amministratori
+      h6 
+        i(class='fa fa-user-plus' aria-hidden='true')
+        span Aggiungi un amministratore
+      form(method='POST' action='/areariservata/register')
+        input(type='text' id='name' placeholder='Nome' name='firstName' required='required' class='u-full-width')
+        br
+        input(type='text' id='last-name' placeholder='Cognome' name='lastName' required='required' class='u-full-width')
+        br
+        input(type="email" id='email' placeholder='e-mail' name='email' required='required' class='u-full-width')
+        br
+        input(type="password" id='password' placeholder='Password' name='password' required='required' class='u-full-width')
+        br
+        input(type="password" id='password2' placeholder='Conferma Password' name='password2' required='required' class='u-full-width')
+        br
+        button(type='submit' class='button-primary' class = 'u-full-width' id='user-add')
+          i(class="fa fa-user-plus" aria-hidden="true") 
+          span Registra
+        if errMsgAddUsr.length > 0
+          p(class='err-msg')
+            i(class="fa fa-exclamation-triangle" aria-hidden="true")
+            | #{errMsgAddUsr}
+    div(class='row')
+      h5 Gestione area Downloads
+      form(method='POST' action='/areariservata/upload' enctype='multipart/form-data') 
+        label(for="selezione_files") Carica files
+        input(type='file' name='myFiles' id='selezione_files' multiple='multiple')
+        button(class='button-primary' type="submit")
+          i(class="fa fa-upload" aria-hidden="true")
+          span Upload
+
+      label(for="file-delete-form") Elimina files
+      form(method='POST' action='/areariservata/delete' id='file-delete-form')
+        if downloadFiles
+          each file in downloadFiles
+            label
+              input(type="checkbox" name='fileDelete' value=file)
+              span(class="label-body")= file.split('_-_')[1]
+          //- a(href=`/uploads/${file}`)= file.split('_-_')[1]
+        button(type='submit' class='button-primary') ELIMINA 
+
+    div(class='row')
+      h5 Gestione Posts
+        div(class='row')
+          div(class='six columns')
+            button(class='button-primary' class='u-full-width' id='new-post-button') Nuovo Post
+          div(class='six columns')
+            button(class='button-primary' class='u-full-width' id='delete-post-button') Elimina Post
+      
+      form(method='POST' action='/areariservata/newpost' enctype='multipart/form-data' id='new-post-form') 
+        label(for="post-title") Titolo
+        input(type='text' name='postTitle' id='post-title' class='u-full-width')
+        label(for="post-body") Testo
+        textarea(name="postBody" cols="80" rows="10" class='u-full-width' id='post-body')         
+        label(for="post-img-load") Carica immagini relative al post
+        input(type='file' name='post_image' id='post-img-load' multiple='multiple')
+        button(class='button-primary' type="submit")
+          i(class="fa fa-upload" aria-hidden="true")
+          | Carica post
+        if errPostUpld.length > 0  
+          p(class='err-msg')
+            i(class="fa fa-exclamation-triangle" aria-hidden="true")
+            | #{errPostUpld}
+      
+      form(method='POST' action='/areariservata/deletepost' enctype='application/x-www-form-urlencoded' id='delete-post-form')
+        label(for='delete-post-form') Elimina Posts
+        div(id='checkbox-container')
+        button(class='button-primary' type='submit') Elimina i post selezionati
+
+    hr
+
+
+
+
+
+
+
+
