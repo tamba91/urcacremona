@@ -5,8 +5,17 @@ block content
   div(class='container')
     header
       div(class='row')
-        img(class='u-max-full-width' src='/images/URCA-ORIZZONTALE2.jpg' id='urca-image') 
-      hr
+        img(class='u-max-full-width' src='/images/URCA-ORIZZONTALE.jpg' id='urca-image') 
+      br
+      div(class='row' id='weather-row')
+        div(class='info-weather')
+          div(class='city-name')
+            | Cremona
+            div(class='weather-icon')
+            div(class='weather-desc')
+            div(class='temperature-value')
+
+      hr(id='header-hr')
     each item in blogPosts
       article
         div(class='row')
@@ -34,12 +43,5 @@ block content
               else
                 | !{item.Testo}
       hr
-    //- div(class='info-weather')
-    //-   div(class='city-name')
-    //-     | Cremona
-    //-   div(class='weather-container')
-    //-     div(class='weather-icon')
-    //-     div(class='weather-desc')
-    //-     div(class='temperature-value') 
     
     
