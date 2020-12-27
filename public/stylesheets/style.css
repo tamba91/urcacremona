@@ -1,5 +1,5 @@
 html {
-  background: url(/images/pexels-pixabay-326240.jpg) no-repeat center center fixed;
+  background: url(/images/pexels-tomas-anunziata-695207-ConvertImage.jpg) no-repeat center center fixed;
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -33,6 +33,8 @@ input {
   text-transform: uppercase;
   color: white;
   text-align: center;
+  max-width: 20%;
+  height: auto;
 }
 
 .weather-icon>img {
@@ -57,19 +59,25 @@ article {
   background-color: #2F3837;
 }
 
-#nav ul li {
+.nav ul li {
   display: inline-block;
   margin: 0 20px 0 0;
 }
 
-#nav a {
+.nav a {
   text-decoration: none;
   color: white;
   font-weight: bold;
 }
 
-#nav a:hover {
+.nav a:hover {
   color: #FF5434;
+}
+
+.info-weather {
+  border-radius: 6px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #download-box ul {
@@ -111,16 +119,8 @@ article {
   background-color: #2F3837;
 }
 
-#main-title {
-  margin-bottom: 0;
-  text-transform: uppercase;
-  text-align: center;
-  background-color: #3d6b37;
-  color: white;
-}
-
-#main-title h3 {
-  padding-top: 20px;
+#home {
+  color: #FF5434;
 }
 
 footer .container {

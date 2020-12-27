@@ -1,13 +1,14 @@
 window.onload = function () {
+    var answers = document.querySelectorAll('.answer')
     document.querySelector("form").addEventListener("submit", function (ev) {
         ev.preventDefault();
 
-        resolveForm("trainingForm", answerList, showResults, incompleteTraining);
+        resolveForm("trainingForm", answerList, showResults);
 
     })
 }
 
-function resolveForm(formId, correctAnswersArray, succCb, failCb) {
+function resolveForm(formId, correctAnswersArray, resCb) {
     var fieldsets = document.querySelectorAll(`#${formId} fieldset`);
     var results = { correct_answers: 0, wrong_answers: 0 };
     var breakCheck = false;
@@ -20,7 +21,6 @@ function resolveForm(formId, correctAnswersArray, succCb, failCb) {
                 if (radios[j].value == correctAnswer) {
                     results.correct_answers += 1;
                     radios[j].parentNode.childNodes[1].style.backgroundColor = "#90EE90"
-                    fieldsets[i].parentNode.style.backgroundColor = "initial"
                     breakCheck = true;
                     break;
                 }
@@ -28,39 +28,19 @@ function resolveForm(formId, correctAnswersArray, succCb, failCb) {
                     results.wrong_answers += 1;
                     radios[j].parentNode.childNodes[1].style.backgroundColor = "#FF6347"
                     radios[correctAnswer].parentNode.childNodes[1].style.backgroundColor = "#90EE90"
-                    fieldsets[i].parentNode.style.backgroundColor = "initial"
                     breakCheck = true;
                     break;
                 }
             }
         }
         if (breakCheck == false) {
-            if (typeof failCb === 'function') {
-                return failCb(fieldsets);
-            }
+            results.wrong_answers += 1;
+            radios[correctAnswer].parentNode.childNodes[1].style.backgroundColor = "#90EE90"
+            fieldsets[i].parentNode.style.backgroundColor = "#F08080"
         }
         breakCheck = false;
     }
-    return succCb(results);
-}
-
-function incompleteTraining(fieldsetsArray) {
-    var check;
-    for (i = 0; i < fieldsetsArray.length; i++) {
-        var radios = fieldsetsArray[i].querySelectorAll("input[type='radio']")
-        check = false;
-        for (j = 0; j < radios.length; j++) {
-            radios[j].parentNode.style.backgroundColor = "initial"
-            if (radios[j].checked == true) {
-                fieldsetsArray[i].parentNode.style.backgroundColor = "initial"
-                check = true
-            }
-        }
-        if (check == false) {
-            fieldsetsArray[i].parentNode.style.backgroundColor = "#87CEEB"
-        }
-    }
-
+    return resCb(results);
 }
 
 function showResults(res) {

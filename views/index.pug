@@ -4,19 +4,9 @@ block content
   script(src='/javascripts/index.js')
   div(class='container')
     header
-      img(class='u-max-full-width' src='/images/URCA-ORIZZONTALE2.jpg' id='urca-image')    
-      br
-      div(class='row'  id='main-title')
-        div(class='ten columns')    
-          h3(class='u-full-width' class = 'urca-green') Sezione di Cremona
-        div(class='two columns')
-          div(class='info-weather')
-            div(class='city-name')
-              | Cremona
-            div(class='weather-container')
-              div(class='weather-icon')
-              div(class='weather-desc')
-              div(class='temperature-value')
+      div(class='row')
+        img(class='u-max-full-width' src='/images/URCA-ORIZZONTALE2.jpg' id='urca-image') 
+      hr
     each item in blogPosts
       article
         div(class='row')
@@ -25,17 +15,31 @@ block content
             a(href=`/post/${item._id}`)= item.Titolo   
            
         div(class='row')
-          div(class='three columns')
-            if item.Media_Paths.length > 0
+          if item.Media_Paths.length > 0
+            div(class='three columns')
               img(src=item.Media_Paths[0].slice(item.Media_Paths[0].indexOf('/')) class='u-max-full-width')
-            else
-              img(src='/images/URCA-ORIZZONTALE.jpg' class='u-max-full-width')
-          div(class='nine columns' class='post-prequel')
+            div(class='nine columns' class='post-prequel')
             if item.Testo.length > 600
               | !{item.Prequel}...
               br
               a(href=`/post/${item._id}`) Leggi tutto
             else
               | !{item.Testo}
+          else
+            div(class='u-full-width')
+              if item.Testo.length > 600
+                | !{item.Prequel}...
+                br
+                a(href=`/post/${item._id}`) Leggi tutto
+              else
+                | !{item.Testo}
       hr
-      
+    //- div(class='info-weather')
+    //-   div(class='city-name')
+    //-     | Cremona
+    //-   div(class='weather-container')
+    //-     div(class='weather-icon')
+    //-     div(class='weather-desc')
+    //-     div(class='temperature-value') 
+    
+    
