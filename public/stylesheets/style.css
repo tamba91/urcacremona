@@ -1,5 +1,5 @@
 html {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 hr {
@@ -177,9 +177,6 @@ footer .container {
   }
   .bars-btn {
     display: block;
-  }
-  html {
-    background: none;
   }
   input[type=radio] {
     display: none;
