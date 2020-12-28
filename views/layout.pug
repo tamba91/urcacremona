@@ -9,11 +9,14 @@ html(lang='it')
     link(rel='stylesheet', href='/stylesheets/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
-    
   body
     div(class='container' class='layout-container')
       div(class='row' class='navbar-row')
         nav(class='nav')
+          input(type="checkbox" id ='check')
+          label(for="check" class='bars-btn' class='u-pull-right')
+            i(Class='fa fa-bars')
+          br
           ul(class='u-pull-right')
             li
               a(id='home' href='/') Home
@@ -30,7 +33,7 @@ html(lang='it')
             li
               a(href='/areariservata/') Area riservata
         
-
+    script(src='/javascripts/layout.js')
     block content
 
     footer
@@ -39,5 +42,5 @@ html(lang='it')
           div(class='twelve columns')
             hr
           div(class='row')
-              p(class='u-pull-left') U.R.C.A. sezione di Cremona in collaborazione con U.N. Enalacaccia P.T. sezione di Cremona
+              p(class='u-pull-left' class='footer-text') U.R.C.A. sezione di Cremona in collaborazione con U.N. Enalacaccia P.T. sezione di Cremona
               img(src='/images/logo_enalcaccia_piccolo.png' class='u-pull-right')

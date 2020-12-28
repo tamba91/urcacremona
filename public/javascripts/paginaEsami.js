@@ -1,15 +1,14 @@
-window.onload = function () {
-    var examArg = document.querySelector('#exams-list')
+var examArg = document.querySelector('#exams-list')
+getExamInfo(`examinfo/${examArg.value}`, displayExamInfo)
+
+
+
+
+
+examArg.addEventListener('change', function () {
     getExamInfo(`examinfo/${examArg.value}`, displayExamInfo)
-        
-            
-            
-            
-       
-    examArg.addEventListener('change', function () {
-        getExamInfo(`examinfo/${examArg.value}`, displayExamInfo)
-    })
-}
+})
+
 
 function getExamInfo(url, manageData) {
     fetch(url)
@@ -17,10 +16,10 @@ function getExamInfo(url, manageData) {
         .then(data => manageData(data));
 }
 
-function displayExamInfo(info){
+function displayExamInfo(info) {
     var tbody = document.querySelector('#info-table')
     removeAll(tbody);
-    info.Composizione.forEach(function(componente){
+    info.Composizione.forEach(function (componente) {
         var tableRow = document.createElement('tr')
         var tdArgomento = document.createElement('td')
         tdArgomento.textContent = componente.Argomento
@@ -30,11 +29,11 @@ function displayExamInfo(info){
         tableRow.appendChild(tdQauntitativo);
         tbody.appendChild(tableRow);
     })
-    
+
 }
 
 function removeAll(tableId) {
-    while(tableId.hasChildNodes()){
+    while (tableId.hasChildNodes()) {
         tableId.removeChild(tableId.firstChild)
     }
 }

@@ -1,13 +1,8 @@
-window.onload = function () {
-    var selecArg = document.querySelector('#arguemnts-list')
+var selecArg = document.querySelector('#arguemnts-list')
+getNumberOfQuestions(`/esercitazioni/count?argomento=${encodeURIComponent(selecArg.value)}`, displayResults)
+selecArg.addEventListener('change', function () {
     getNumberOfQuestions(`/esercitazioni/count?argomento=${encodeURIComponent(selecArg.value)}`, displayResults)
-    selecArg.addEventListener('change', function () {
-        getNumberOfQuestions(`/esercitazioni/count?argomento=${encodeURIComponent(selecArg.value)}`, displayResults)
-    })
-
-
-
-}
+})
 
 function getNumberOfQuestions(url, manageData) {
     fetch(url)

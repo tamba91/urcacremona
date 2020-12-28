@@ -125,24 +125,28 @@ router.post('/register', function (req, res, next) {
 
 router.post('/delete', function (req, res) {
     var arrPromises = [];
-
-    if (Array.isArray(req.body.fileDelete)) {
-        for (i = 0; i < req.body.fileDelete.length; i++) {
-            arrPromises.push(unLink(`public/uploads/${req.body.fileDelete[i]}`));
+    if (req.body.fileDelete) {
+        if (Array.isArray(req.body.fileDelete)) {
+            for (i = 0; i < req.body.fileDelete.length; i++) {
+                arrPromises.push(unLink(`public/uploads/${req.body.fileDelete[i]}`));
+            }
         }
+        else {
+            arrPromises.push(unLink(`public/uploads/${req.body.fileDelete}`))
+        }
+
+
+        Promise.all(arrPromises)
+            .then(function () {
+                res.redirect('/areariservata')
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
     }
     else {
-        arrPromises.push(unLink(`public/uploads/${req.body.fileDelete}`))
+        res.redirect('/areariservata');
     }
-
-
-    Promise.all(arrPromises)
-        .then(function () {
-            res.redirect('/areariservata')
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
 })
 
 router.post('/newpost', function (req, res) {

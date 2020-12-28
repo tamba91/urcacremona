@@ -1,4 +1,3 @@
-window.onload = function () {
     var answers = document.querySelectorAll('.answer')
     document.querySelector("form").addEventListener("submit", function (ev) {
         ev.preventDefault();
@@ -6,7 +5,6 @@ window.onload = function () {
         resolveForm("trainingForm", answerList, showResults);
 
     })
-}
 
 function resolveForm(formId, correctAnswersArray, resCb) {
     var fieldsets = document.querySelectorAll(`#${formId} fieldset`);

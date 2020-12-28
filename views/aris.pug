@@ -29,16 +29,16 @@ block content
       h6 
         i(class='fa fa-user-plus' aria-hidden='true')
         span Aggiungi un amministratore
-      form(method='POST' action='/areariservata/register')
-        input(type='text' id='name' placeholder='Nome' name='firstName' required='required' class='u-full-width')
+      form(method='POST' action='/areariservata/register' autocomplete='off')
+        input(type='text' id='name' placeholder='Nome' name='firstName' required='required' class='u-full-width' autocomplete='new-password')
         br
-        input(type='text' id='last-name' placeholder='Cognome' name='lastName' required='required' class='u-full-width')
+        input(type='text' id='last-name' placeholder='Cognome' name='lastName' required='required' class='u-full-width' autocomplete='new-password')
         br
-        input(type="email" id='email' placeholder='e-mail' name='email' required='required' class='u-full-width')
+        input(type="email" id='email' placeholder='e-mail' name='email' required='required' class='u-full-width' autocomplete='new-password')
         br
-        input(type="password" id='password' placeholder='Password' name='password' required='required' class='u-full-width')
+        input(type="password" id='password' placeholder='Password' name='password' required='required' class='u-full-width' autocomplete='new-password')
         br
-        input(type="password" id='password2' placeholder='Conferma Password' name='password2' required='required' class='u-full-width')
+        input(type="password" id='password2' placeholder='Conferma Password' name='password2' required='required' class='u-full-width' autocomplete='new-password')
         br
         button(type='submit' class='button-primary' class = 'u-full-width' id='user-add')
           i(class="fa fa-user-plus" aria-hidden="true") 

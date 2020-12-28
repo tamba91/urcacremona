@@ -1,115 +1,36 @@
 html {
   background-color: #f0f1f1;
-  /* background: url(/images/pexels-pixabay-326240.jpg) no-repeat center center fixed; */
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  
 }
-
-/* nav ul li{
-  margin-top: 1.5rem;
-} */
 
 hr {
-  border-top: 1px solid #626746;
+  border-top: 1px solid #2F3837;
   margin-bottom: 0px;
-}
-
-#header-hr {
-  margin-top: 0px
-}
-
-
-i {
-  margin-right: 5px;
-}
-
-input {
-  margin-bottom: 5px;
-}
-
-.info-weather {
-  margin: 0px;
-  padding: 0px;
-  font-size: x-small;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: white;
-  text-align: center;
-  max-width: 20%;
-  height: auto;
-  border-radius: 6px;
-  display: inline-block;
-}
-
-.weather-icon>img {
-  max-width: 30%;
-  height: auto;
 }
 
 article {
   background-color: #f0f1f1;
   padding: 3px;
-  margin: 20px;
+  margin: 10px;
 }
 
-.container {
-  background-color: white;
-  padding: 5px;
-  color: #2f3837;
+i {
+  margin-right: 5px;
 }
 
-.navbar-row {
-  margin: 0;
-  padding: 0;
-  background-color: #2F3837;
+input, button {
+  margin-bottom: 5px;
 }
 
-.nav ul li {
-  display: inline-block;
-  margin: 0 20px 0 0;
-}
-
-.nav a {
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
-
-}
-
-.nav a:hover {
+#home {
   color: #FF5434;
 }
 
-.info-weather {
-  border-radius: 6px;
-  padding: 0px;
-  margin: 5px;
-  max-width: 20%;
-  height: auto;
-  display: inline-block;
-  
+#check {
+  display: none;
 }
 
-#weather-row {
-background-color: lightsteelblue;
-}
-
-#download-box ul {
-  list-style: none;
-}
-
-#download-box ul li a {
-  padding: 5px;
-  text-decoration: none;
-}
-
-#checkbox-container label{
-  font-weight: normal;
+#header-hr {
+  margin-top: 0px
 }
 
 .button.button-primary, button.button-primary, input[type=button].button-primary, input[type=reset].button-primary, input[type=submit].button-primary {
@@ -122,14 +43,10 @@ background-color: lightsteelblue;
   border: 2px solid;
 }
 
-.answer {
-  font-weight: normal;
-  font-size: smaller;
-}
-
-.question-arg {
-  font-style: italic;
-  text-decoration: underline;
+.container {
+  background-color: white;
+  padding: 5px;
+  color: #2f3837;
 }
 
 .layout-container {
@@ -138,8 +55,70 @@ background-color: lightsteelblue;
   background-color: #2F3837;
 }
 
-#home {
+.nav ul li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.nav ul li a:hover {
   color: #FF5434;
+}
+
+.bars-btn {
+  color: #FF5434;
+  font-size: 30px;
+  margin-right: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.info-weather {
+  font-size: x-small;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  max-width: 20%;
+  height: auto;
+  display: inline-block;
+}
+
+.weather-icon>img {
+  max-width: 30%;
+  height: auto;
+}
+
+#weather-row {
+  background-color: lightsteelblue;
+}
+
+#download-box ul {
+  list-style: none;
+}
+
+#download-box ul li a {
+  padding: 5px;
+  text-decoration: none;
+}
+
+#checkbox-container label {
+  font-weight: normal;
+}
+
+.answer {
+  font-weight: normal;
+  font-size: smaller;
+}
+
+.question-arg {
+  font-style: italic;
+  text-decoration: underline;
 }
 
 footer .container {
@@ -164,11 +143,6 @@ footer .container {
   margin-top: 20px;
 }
 
-.prequel-image {
-  max-width: 30%;
-  height: auto;
-}
-
 .post-date {
   font-size: 1em;
   color: #999;
@@ -176,13 +150,34 @@ footer .container {
 }
 
 .err-msg {
-  background-color: #FF6347;
+  background-color: #ff0033;
   padding-left: 5px;
   border-radius: 2px;
-  margin: 5px;
 }
 
-@media screen and (max-width: 961px) {
+.footer-text {
+  font-size: x-small;
+}
+
+@media screen and (max-width: 1023px) {
+  .layout-container {
+    margin-top: 2px;
+  }
+  .nav ul {
+    display: none;
+    left: 0;
+    background-color: #2F3837;
+    width: 100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  .nav ul li {
+    line-height: 80px;
+    display: block;
+  }
+  .bars-btn {
+    display: block;
+  }
   html {
     background: none;
   }
@@ -194,17 +189,17 @@ footer .container {
   }
   .container {
     padding: 2px;
+    border-radius: 0;
   }
+}
 
+@media screen and (max-width: 400px) {
   .weather-desc {
     display: none;
   }
 }
 
 @media screen and (max-width: 550px) {
-  .info-weather img {
-    display: inline;
-  }
   .urca-banner {
     display: none;
   }

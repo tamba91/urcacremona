@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  script(src='/javascripts/index.js')
   div(class='container')
     header
       div(class='row')
@@ -27,13 +26,14 @@ block content
           if item.Media_Paths.length > 0
             div(class='three columns')
               img(src=item.Media_Paths[0].slice(item.Media_Paths[0].indexOf('/')) class='u-max-full-width')
-            div(class='nine columns' class='post-prequel')
             if item.Testo.length > 600
-              | !{item.Prequel}...
-              br
-              a(href=`/post/${item._id}`) Leggi tutto
+              div(class='nine columns' class='post-prequel')!= item.Prequel 
+                | ...
+                br
+                a(href=`/post/${item._id}`) Leggi tutto
             else
-              | !{item.Testo}
+              div(class='nine columns' class='post-prequel')!= item.Testo
+
           else
             div(class='u-full-width')
               if item.Testo.length > 600
@@ -43,5 +43,5 @@ block content
               else
                 | !{item.Testo}
       hr
-    
+  script(src='/javascripts/index.js')  
     

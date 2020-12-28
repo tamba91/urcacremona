@@ -1,7 +1,4 @@
-window.onload = function () {
-    fetchWeatherData('https://api.openweathermap.org/data/2.5/weather?q=Cremona&units=metric&lang=it&appid=b734a115782cc2c4b428f09c5d0a6d63', manageResults);
-}
-
+fetchWeatherData('https://api.openweathermap.org/data/2.5/weather?q=Cremona&units=metric&lang=it&appid=b734a115782cc2c4b428f09c5d0a6d63', manageResults);
 function fetchWeatherData(url, manageResults) {
     fetch(url)
         .then(response => response.json())
@@ -14,3 +11,4 @@ function manageResults(wData) {
     document.querySelector('.temperature-value').textContent = `${wData.main.temp.toFixed()}°C`
     document.querySelector('.weather-desc').textContent = wData.weather[0].description
 }
+
