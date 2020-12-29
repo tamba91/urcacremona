@@ -2,7 +2,7 @@ extends layout
 
 block content
     div(class ='container')
-        div(class='row')
+        div(class='row' class='page-title')
             div(class='nine columns')
                 h4(class='u-full-width' class='post-title')= blogPost.Titolo  
                 time(class='post-date')= `${blogPost.Data.getDate()}/${blogPost.Data.getMonth() + 1}/${blogPost.Data.getFullYear()}`

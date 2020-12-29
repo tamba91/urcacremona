@@ -2,9 +2,9 @@ extends layout
 
 block content   
     div(class='container')
-        div(class='row')
+        div(class='row' class='page-title')
             div(class='nine columns')
-                h4
+                h4  
                     i(class="fa fa-sign-in" aria-hidden="true") 
                     | Login
                 form(method='POST' action='/users/login/')

@@ -1,5 +1,5 @@
 html {
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 hr {
@@ -9,8 +9,7 @@ hr {
 
 article {
   background-color: #f0f1f1;
-  padding: 3px;
-  margin: 10px;
+  margin-top: 5px;
 }
 
 i {
@@ -21,14 +20,13 @@ input, button {
   margin-bottom: 5px;
 }
 
-#home {
+#home, h4 {
   color: #FF5434;
 }
 
 #check {
   display: none;
 }
-
 
 #header-hr {
   margin-top: 0px
@@ -160,17 +158,43 @@ footer .container {
   font-size: x-small;
 }
 
-@media screen and (max-width: 1023px) {
+@media (max-width: 400px) {
   .layout-container {
-    margin-top: 2px;
+    position: fixed;
+    z-index: 2;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 550px) {
+  .layout-container {
+    position: fixed;
+    left: 7.5%;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 550px) {
+  .urca-banner {
+    display: none;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 961px) {
+  .layout-container {
+    position: fixed;
+    left: 10%;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 961px) {
+  .layout-container {
+    margin-top: 0;
   }
   .nav ul {
     display: none;
-    left: 0;
-    background-color: #2F3837;
     width: 100%;
     text-align: center;
-    transition: all .5s;
   }
   .nav ul li {
     line-height: 80px;
@@ -179,26 +203,20 @@ footer .container {
   .bars-btn {
     display: block;
   }
-  input[type=radio] {
-    display: none;
-  }
-  input[type=radio]:checked+span {
-    background-color: sandybrown;
+  header, .page-title {
+    margin-top: 60px;
   }
   .container {
     padding: 2px;
     border-radius: 0;
   }
-}
-
-@media screen and (max-width: 400px) {
   .weather-desc {
     display: none;
   }
-}
-
-@media screen and (max-width: 550px) {
-  .urca-banner {
+  input[type=radio] {
     display: none;
+  }
+  input[type=radio]:checked+span {
+    background-color: sandybrown;
   }
 }

@@ -1,10 +1,8 @@
 extends layout
 
 block content
-  script(src='/javascripts/tinymce/tinymce.min.js')
-  script(src='/javascripts/aris.js')
   div(class='container')
-    div(class='row')
+    div(class='row' class='page-title')
       h4(class='u-pull-left')= title
       a(href='/users/logout' class='button button-primary' class='u-pull-right')
         h4
@@ -95,6 +93,8 @@ block content
         button(class='button-primary' type='submit') Elimina i post selezionati
 
     hr
+  script(src='/javascripts/tinymce/tinymce.min.js')
+  script(src='/javascripts/aris.js')
 
 
 

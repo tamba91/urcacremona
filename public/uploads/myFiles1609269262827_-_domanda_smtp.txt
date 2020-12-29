@@ -1,0 +1,273 @@
+Dopo aver discusso le caratteristiche principali del protocollo SMTP, si definisca il concetto di mailbox e se ne discuta la struttura.
+
+Tutto quello che ho trovato sulla struttura della mailbox l'ho indicato, spero sia sufficiente. La mia risposta a seguire:
+
+
+
+SMTP è un protocollo basato su TCP il cui scopo è permettere lo scambio di messaggi usando tecnologie che ne permettano la raccolta e l’accodamento.
+Smtp è un protocollo protocollo non interattivo, ossia non prevede l'interazione diretta con l'utente, e prevede che i messaggi vengano accodati e inviati tramite un daemon (chiamato Mail Transfer Agent) che accede ad una apposita directory (directory di spooling) dove vengono salvati i messaggi.
+
+SMTP prevede tre attori nel suo funzionamento:
+
+- user agent: ossia il programma di scrittura della posta
+- mail server: server che si occuperà dell'invio dei messaggi utilizzando SMTP ad altri mail server
+- mail box: directory che contiene i messaggi recapitati tramite SMTP
+
+La comunicazione, segue tre fasi:
+
+handshaking (HELO, scambio di identità)
+
+trasferimento dei messaggi
+
+chiusura della connessione
+
+La comunicazione tra client e server avviene tramite un paradigma di comando/risposta, dove i comandi sono normale testo ASCII e le risposte sono codici di stato (opzionalmente con delle frasi descrittive).
+
+L'intestazione si compone di un minimo di tre campi:
+
+From:
+
+To:
+
+Subject:
+
+A questi possono essere aggiunti altri campi utili, come Cc, Ccn e così via…
+
+
+La mailbox, o casella di posta, risiede sul mail server e permette di archiviare la posta in arrivo.
+
+Quando il mittente invia una email, smtp provvede a recapitarla al mail server di destinazione, e qui vi sarà uno user agent pronto che si farà carico di smistare la posta in arrivo e archiviarla nella corretta mailbox del destinatario (il mail server destinatario molto probabilmente avrà più mailbox al suo interno).
+
+Se lo user agent del destinatario non risiede sulla stessa macchina della mailbox, esso vi farà accesso tramite protocolli POP (che prevedono lo scaricamento di tutto il contenuto della mailbox all’interno della macchina del destinatario, con consecutivo svuotamento della mailbox) o IMAP (che permette la lettura dei messaggi che risiedono nella mailbox senza scaricarli).
+
+
+
+
+
+
+
+
+
+
+Nell’ambito del protocollo SMTP, si proponga un esempio di messaggio di posta con estensione MIME multipart che contiene del testo e un’immagine di tipo GIF. 
+
+Si descriva inoltre il flusso di richieste e risposte SMTP che verrà scambiato per inviare tale messaggio 
+
+da nomestudente@studenti.unimi.it 
+
+a claudio.ardagna@unimi.it.
+
+
+
+-----------------------------------
+
+Definizione messaggio:
+
+
+
+from: nomestudente@studenti.unimi.it
+
+to:  claudio.ardagna@unimi.it.
+
+Subject: testo e gif
+
+MIME-Version: 1.0
+
+Content-type: multipart/mixed; boundary=98766789
+
+
+
+--98766789
+
+content-transfer-Encoding: quoted-printable
+
+Content-Type: text/plain
+
+
+
+prova.
+
+--98766789
+
+content-transfer-Encoding: base 64
+
+Content-Type: image/gif
+
+
+
+..base 64 encoded data..
+
+--98766789
+
+
+
+-------------------------------------------
+
+interazione client-server per l'invio del messaggio 
+
+
+
+220 unimi.it hello
+
+HELO studenti.unimi.it
+
+250 hello studenti.unimi.it
+
+MAIL FROM: <nomestudente@studenti.unimi.it>
+
+250 OK
+
+RCPT TO <claudio.ardagna@unimi.it>
+
+250 OK
+
+DATA
+
+354 go ahead
+
+messaggio precedente
+
+250 messagge accepted
+
+QUIT
+
+221 Goodbye
+
+
+
+
+
+
+
+
+
+
+
+
+Nell'ambito del protocollo SMTP, si proponga un esempio di messaggio di posta con estensione MIME multipart che contiene un testo e un'immagine. Si descriva inoltre il flusso di richieste e risposte POP3 per 
+
+i) la ricerca di tale messaggio nella casella di posta nomestudente@studenti.unimi.it, 
+
+ii) la lettura di tale messaggio 
+
+iii) la sua cancellazione dopo la lettura.
+
+--------------------------------------------------------
+
+1) Di seguito le descrizione del MIME:
+
+
+
+From: mittente@studenti.unimi.it
+
+To: samuele.ferrari1@studenti.unimi.it
+
+Subject: Esempio MIME multipart
+
+MIME-Version: 1.0
+
+Content-Type: multipart/mixed; boundary=98766789
+
+--98766789
+
+Content-Transfer-Encoding: quoted-printable Content-Type: text/plain
+
+Testo del messaggio
+
+.
+
+--98766789 
+
+Content-Transfer-Encoding: base 64 
+
+Content-Type: image/jpeg
+
+base64 encoded data ..... ......................... 
+
+......base64 encoded data 
+
+--98766789
+
+
+
+2) Di seguito la descrizione dei messaggi POP3:
+
+
+
+Per prima cosa assumiamo di usare L'RFC 2449 dove è stato introdotto il comando TOP, in modo da vedere le prime N righe di un messaggio. Assumiamo di eseguire l'autenticazione nel modo standard usando i comandi USER e PASS (anche se poco sicuri).
+
+
+
+Di seguito sono i riportati i passaggi per eseguire l'autenticazione:
+
+C: <apre la connessione>
+
+S: +OK POP3 server ready <12345@studenti.unimi.it>
+
+C: USER samuele.ferrari1
+
+S: +OK Password required for foo.123.
+
+C: PASS password1
+
+S: +OK user.123 has 3 messages (1548 octets).
+
+
+
+i) Per trovare il messaggio con il MIME contenente del testo e un immagine posso usare il comando STAT per vedere quanti messaggi sono presenti nella casella di posta e poi vedere le prime righe con il comando TOP, una volta trovato il messaggio richiesto procederò con il 
+
+secondo punto.
+
+
+
+C: STAT
+
+S: +OK 3 1548
+
+C: LIST
+
+S: +OK 3 messages (1548 octets)
+
+1 344
+
+2 386
+
+3 818
+
+.
+
+TOP 1 10
+
++OK 344 octets
+
+Return-Path: 
+
+Received: (from samuele.ferrari1@localhost)
+
+by studenti.unimi.it (8.8.8/8.8.8) id SAA29469
+
+for samuele.ferrari1; Wed, 3 Dec 1997 18:54:54 -0500 (EST)
+
+Date: Wed, 3 Dec 1997 18:54:54 -0500 (EST)
+
+From: Mittente
+
+Content-Type: multipart/mixed; boundary=98766789
+
+Message-Id: <199712032354.SAA29469@studenti.unimi.it>
+
+Subject: Esempio MIME multipart
+
+Status: U
+
+Testo del messaggio
+
+.
+
+
+
+ii) Per leggere il messaggio userò il comando RETR 1
+
+
+
+iii) Per cancellare il messaggio userò il comando DELE 1 e successivamente QUIT per uscire dalla sessione.
