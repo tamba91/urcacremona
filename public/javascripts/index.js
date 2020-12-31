@@ -1,8 +1,12 @@
-fetchWeatherData('https://api.openweathermap.org/data/2.5/weather?q=Cremona&units=metric&lang=it&appid=b734a115782cc2c4b428f09c5d0a6d63', manageResults);
+fetchWeatherData('/weatherdata', manageResults);
 function fetchWeatherData(url, manageResults) {
     fetch(url)
-        .then(response => response.json())
-        .then(data => manageResults(data));
+        .then(function(result){
+            result.json()
+        .then(function(data){
+            manageResults(data)
+        })
+        })
 }
 
 function manageResults(wData) {
