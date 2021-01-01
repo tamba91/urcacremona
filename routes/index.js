@@ -24,7 +24,7 @@ router.get('/post/:postId', function (req, res, next) {
 })
 
 router.get('/weatherdata', function (req, res) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=Cremona&units=metric&lang=it&appid=${process.env.OPA_KEY}`)
+  fetch(`https://api.openweathermap.org/data/2.5/group?id=3177838,3171058,3171457,3169522&units=metric&lang=it&appid=${process.env.OPA_KEY}`)
     .then(function(result){
       new Promise(function(resolve, reject){
         // var dest = fs.createWriteStream('./result');
