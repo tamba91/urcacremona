@@ -1,34 +1,33 @@
-var createError = require('http-errors');
-var express = require('express');
-var dotenv = require('dotenv');
+const createError = require('http-errors');
+const express = require('express');
+const dotenv = require('dotenv');
 dotenv.config();
-//Set up mongoose connection
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-var mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
+const mongoDB = process.env.MONGODB_URI;
+mongoose.connect(mongoDB);
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var compression = require('compression');
-var helmet = require('helmet')
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var trainingRouter = require('./routes/esercitazioni');
-var downloadsRouter = require('./routes/downloads');
-var examRouter = require('./routes/simulazioneEsami.js');
-var contactsRouter = require('./routes/contatti');
-var arisRouter = require('./routes/areaRiservata');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const compression = require('compression');
+const helmet = require('helmet')
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
 const { ensureAuthenticated } = require('./config/auth');
-var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const trainingRouter = require('./routes/esercitazioni');
+const downloadsRouter = require('./routes/downloads');
+const examRouter = require('./routes/simulazioneEsami.js');
+const contactsRouter = require('./routes/contatti');
+const arisRouter = require('./routes/areaRiservata');
+const app = express();
 require('./config/passport')(passport);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

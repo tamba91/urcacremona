@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var postController = require('../controllers/postController');
-var fetch = require('node-fetch');
+const postController = require('../controllers/postController');
+const fetch = require('node-fetch');
 
 
 /* GET home page. */

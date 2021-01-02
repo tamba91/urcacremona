@@ -1,14 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var fs = require('fs');
-var path = require('path')
+const express = require('express');
+const router = express.Router();
+const fs = require('fs');
+const path = require('path')
 const util = require('util');
 const readDir = util.promisify(fs.readdir)
 const unLink = util.promisify(fs.unlink);
-var multer = require('multer');
-var bcrypt = require('bcryptjs');
+const multer = require('multer');
+const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-var postController = require('../controllers/postController');
+const postController = require('../controllers/postController');
 
 router.get('/', function (req, res, next) {
     readDir('public/uploads')
@@ -209,7 +209,5 @@ router.post('/deletepost', function (req, res, next) {
             throw err
         })
 })
-
-
 
 module.exports = router;

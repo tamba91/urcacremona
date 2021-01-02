@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var questionController = require('../controllers/questionController');
+const express = require('express');
+const router = express.Router();
+const questionController = require('../controllers/questionController');
 
 
 router.get('/', function (req, res, next) {
@@ -34,7 +34,5 @@ router.get('/init/', function (req, res, next) {
         })
 
 })
-
-
 
 module.exports = router;
