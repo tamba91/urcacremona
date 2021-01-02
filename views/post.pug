@@ -3,11 +3,8 @@ extends layout
 block content
     div(class ='container')
         div(class='row' class='page-title')
-            div(class='nine columns')
-                h4(class='u-full-width' class='post-title')= blogPost.Titolo  
-                time(class='post-date')= `${blogPost.Data.getDate()}/${blogPost.Data.getMonth() + 1}/${blogPost.Data.getFullYear()}`
-            div(class='three columns')
-                img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo.png")
+            h4(class='u-full-width' class='post-title')= blogPost.Titolo  
+            time(class='post-date')= `${blogPost.Data.getDate()}/${blogPost.Data.getMonth() + 1}/${blogPost.Data.getFullYear()}`
         if blogPost.Media_Paths.length > 0
             div(class='row')
                 div(class='seven columns')
