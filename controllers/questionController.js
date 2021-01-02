@@ -1,4 +1,4 @@
-var question = require('../models/question');
+const question = require('../models/question');
 
 exports.getArgs = function () {
     return question.distinct('Argomento');

@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
 
   postController.getPosts()
     .then(function (posts) {
@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 
 });
 
-router.get('/post/:postId', function (req, res, next) {
+router.get('/post/:postId', function (req, res) {
   postController.getPostById(req.params.postId)
     .then(function (post) {
       res.render('post', { title: 'Post', blogPost: post });
@@ -42,4 +42,5 @@ router.get('/weatherdata', function (req, res) {
       
     })
 })
+
 module.exports = router;

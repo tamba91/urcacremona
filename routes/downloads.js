@@ -4,7 +4,7 @@ const fs = require('fs');
 const util = require('util');
 const readDir = util.promisify(fs.readdir)
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
 
   readDir('public/uploads')
     .then(

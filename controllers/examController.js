@@ -1,5 +1,5 @@
-var exam = require('../models/exam');
-var questionController = require('../controllers/questionController.js');
+const exam = require('../models/exam');
+const questionController = require('../controllers/questionController.js');
 
 exports.getExams = function () {
     return exam.distinct('Tipo_Esame');

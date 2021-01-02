@@ -3,7 +3,7 @@ const router = express.Router();
 const questionController = require('../controllers/questionController');
 
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     questionController.getArgs()
         .then(function (args) {
             res.render('esercitazioni', { title: 'Esercitazioni', argomenti: args });
@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
 
 })
 
-router.get('/count/', function (req, res, next) {
+router.get('/count/', function (req, res) {
     questionController.getQuestionsNumberByArg(req.query.argomento)
         .then(function (num) {
             res.json(num);
@@ -24,7 +24,7 @@ router.get('/count/', function (req, res, next) {
         })
 })
 
-router.get('/init/', function (req, res, next) {
+router.get('/init/', function (req, res) {
     questionController.getRandomQuestionsByArg(req.query.argomento, req.query.num)
         .then(function (questions) {
             var answers = questions.map(val => {

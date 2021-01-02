@@ -2,7 +2,7 @@ const { pseudoRandomBytes } = require('crypto');
 const fs = require('fs')
 const util = require('util');
 const unLink = util.promisify(fs.unlink);
-var post = require('../models/post');
+const post = require('../models/post');
 
 
 exports.createPost = function (title, body, paths, author) {

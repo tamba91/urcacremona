@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 /* GET users listing. */
-router.get('/login/', function(req, res, next) {
+router.get('/login/', function(req, res) {
   res.render('login', {errLoginMsg: req.flash('error')});
 });
 
@@ -15,13 +15,9 @@ router.post('/login/', function(req, res, next){
   })(req, res, next);
 })
 
-router.get('/logout/', function(req, res, next){
+router.get('/logout/', function(req, res){
   req.logout();
   res.redirect('/users/login/');
-})
-
-router.get('/cool/', function(req, res, next){
-  res.send("You're so users cool");
 })
 
 module.exports = router;

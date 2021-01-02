@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
         })
 })
 
-router.get('/init', function (req, res, next) {
+router.get('/init', function (req, res) {
     examController.getExamByType(req.query.esame)
         .then(function (arrayOfPromises) {
             Promise.all(arrayOfPromises).then(function (result) {
@@ -24,7 +24,7 @@ router.get('/init', function (req, res, next) {
 
 })
 
-router.get('/examinfo/:type', function(req, res, next){
+router.get('/examinfo/:type', function(req, res){
     examController.getExamInfoByType(req.params.type)
         .then(function(examInfo){
             res.json(examInfo);

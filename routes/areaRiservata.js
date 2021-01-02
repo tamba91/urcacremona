@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const postController = require('../controllers/postController');
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     readDir('public/uploads')
         .then(function (files) {
             res.render('aris', { title: 'Area Riservata', firstName: req.user.Nome, downloadFiles: files, errMsgCpwd: req.flash('errMsgCpwd'), errMsgAddUsr: req.flash('errMsgAddUsr'), errPostUpld: req.flash('errPostUpld') });
@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
         })
 });
 
-router.post('/changepasswd', function (req, res, next) {
+router.post('/changepasswd', function (req, res) {
     var error;
 
     if (req.body.newPassword.length < 6) {
@@ -75,7 +75,7 @@ router.post('/upload', function (req, res) {
     });
 });
 
-router.post('/register', function (req, res, next) {
+router.post('/register', function (req, res) {
     var { firstName, lastName, email, password, password2 } = req.body;
     var error;
 
@@ -200,7 +200,7 @@ router.get('/postsinfo', function (req, res) {
         })
 })
 
-router.post('/deletepost', function (req, res, next) {
+router.post('/deletepost', function (req, res) {
     postController.deletePostsByIds(req.body.postDelete)
         .then(function () {
             res.redirect('/');
