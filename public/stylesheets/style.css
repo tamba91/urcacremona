@@ -223,7 +223,7 @@ footer .container {
     display: none;
   }
   input[type=radio]:checked+span {
-    background-color: sandybrown;
+    background-color: #d1ecf1;
   }
   .footer-text {
     font-size: x-small;

@@ -21,10 +21,11 @@ block content
             a(href=`/post/${item._id}`)= item.Titolo   
            
         div(class='row')
-          if item.Media_Paths.length > 0
+          if item.Temp_Media_Paths.length > 0
             div(class='three columns')
-              img(src=item.Media_Paths[0].slice(item.Media_Paths[0].indexOf('/')) class='u-max-full-width')
-            if item.Testo.length > 600
+              img(src=`data:${item.Immagini[0].contentType};base64,${item.Immagini[0].data.toString('base64')}` class='u-max-full-width')
+              //- img(src=item.Media_Paths[0].slice(item.Media_Paths[0].indexOf('/')) class='u-max-full-width')
+            if item.Testo.length > 600 
               div(class='nine columns' class='post-prequel')!= item.Prequel 
                 | ...
                 br

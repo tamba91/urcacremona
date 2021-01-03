@@ -6,10 +6,13 @@ var postSchema = new Schema(
     {
         Titolo: { type: String },
         Testo: { type: String },
-        Media_Paths: { type: [String] },
+        Temp_Media_Paths: { type: [String] },
         Autore: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
-        Data: { type: Date, default: Date.now }
-
+        Data: { type: Date, default: Date.now },
+        Immagini: [{
+            data: Buffer,
+            contentType: String
+        }]
     }
 )
 

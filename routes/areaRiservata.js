@@ -178,7 +178,14 @@ router.post('/newpost', function (req, res) {
             return res.redirect('/areariservata');
         }
         else {
-            postController.createPost(req.body.postTitle, req.body.postBody, req.files.map(function (fileInfo) { return `${fileInfo.destination}/${fileInfo.filename}` }), req.user._id)
+            var binaryFilesArray = [];
+            var tempPathsArray = [];
+            for(i=0; i<req.files.length; i++){
+                var buffer = fs.readFileSync(req.files[i].path);
+                binaryFilesArray.push({data: buffer, contentType: req.files[i].mimetype});
+                tempPathsArray.push(req.files[i].path)
+            }
+            postController.createPost(req.body.postTitle, req.body.postBody, tempPathsArray, req.user._id, binaryFilesArray)
                 .then(function () {
                     res.redirect('/')
 
@@ -188,7 +195,7 @@ router.post('/newpost', function (req, res) {
 })
 
 router.get('/postsinfo', function (req, res) {
-    postController.getPosts()
+    postController.getPostsInfo()
         .then(function (posts) {
             res.json(posts);
         })

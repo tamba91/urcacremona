@@ -5,12 +5,16 @@ const unLink = util.promisify(fs.unlink);
 const post = require('../models/post');
 
 
-exports.createPost = function (title, body, paths, author) {
-    return post.create({ Titolo: title, Testo: body, Media_Paths: paths, Autore: author })
+exports.createPost = function (title, body, paths, author, images) {
+    return post.create({ Titolo: title, Testo: body, Temp_Media_Paths: paths, Autore: author, Immagini: images })
 }
 
 exports.getPosts = function () {
     return post.find({}).sort({ Data: 'descending' })
+}
+
+exports.getPostsInfo = function () {
+    return post.find({}).sort({ Data: 'descending' }).select('Titolo Temp_Media_Paths Autore Data')
 }
 
 exports.getPostById = function (postId) {
@@ -22,19 +26,5 @@ exports.getPostsByIds = function (postIds) {
 }
 
 exports.deletePostsByIds = function (postIds) {
-    var promises = [];
-    return post.find({ _id: { $in: postIds } })
-        .then(function (posts) {
-            posts.forEach(function (post) {
-                post.Media_Paths.forEach(function (path) {
-                    promises.push(unLink(path))
-                })
-            })
-        })
-        .then(function () {
-            post.deleteMany({ _id: { $in: postIds } })
-                .then(function () {
-                    Promise.all(promises)
-                })
-        })
+    return post.deleteMany({ _id: { $in: postIds } })
 }
