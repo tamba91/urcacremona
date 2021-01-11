@@ -1,3 +1,5 @@
+//area riservata - form per caricare i contenuti e gestire gli amministratori
+
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
@@ -9,7 +11,9 @@ const multer = require('multer');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const postController = require('../controllers/postController');
+const eventController = require('../controllers/eventController')
 
+//rendering della pagina dopo l'accesso (log-in)
 router.get('/', function (req, res) {
     readDir('public/uploads')
         .then(function (files) {
@@ -20,6 +24,7 @@ router.get('/', function (req, res) {
         })
 });
 
+// form per il cambio password
 router.post('/changepasswd', function (req, res) {
     var error;
 
@@ -51,7 +56,7 @@ router.post('/changepasswd', function (req, res) {
 
 })
 
-//upload di file
+//upload di file (sperimentale, funziona correttamente solo su localhost)
 router.post('/upload', function (req, res) {
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
@@ -75,6 +80,7 @@ router.post('/upload', function (req, res) {
     });
 });
 
+//nuovo amministratore
 router.post('/register', function (req, res) {
     var { firstName, lastName, email, password, password2 } = req.body;
     var error;
@@ -123,6 +129,7 @@ router.post('/register', function (req, res) {
 
 })
 
+//eliminazione file area download. vedi sopra
 router.post('/delete', function (req, res) {
     var arrPromises = [];
     if (req.body.fileDelete) {
@@ -149,6 +156,17 @@ router.post('/delete', function (req, res) {
     }
 })
 
+//nuovo evento in bacheca
+router.post('/newevent', function(req, res){
+    console.log(req.body)
+    eventController.createNewEvent(req.body.eventDate, req.body.eventText, req.user._id)
+        .then(function(){
+            console.log('evento creato');
+        })
+    res.redirect('/')
+})
+
+// nuovo post. da aggiungere cod. per dimensione max immagini 
 router.post('/newpost', function (req, res) {
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
@@ -194,6 +212,21 @@ router.post('/newpost', function (req, res) {
     })
 })
 
+//display degli eventi salvati nel DB
+router.get('/eventsinfo', function(req, res){
+    eventController.getEvents()
+        .then(function (events) {
+            res.json(events);
+        })
+        .catch(function (err) {
+            res.json(400, {
+                error: 1,
+                msg: "some error"
+            });
+        })
+})
+
+//info sui post nel DB per la gestione
 router.get('/postsinfo', function (req, res) {
     postController.getPostsInfo()
         .then(function (posts) {
@@ -207,6 +240,18 @@ router.get('/postsinfo', function (req, res) {
         })
 })
 
+//cancella un evento in bacheca
+router.post('/deleteevent', function(req, res){
+    eventController.deleteEventsById(req.body.eventDelete)
+    .then(function () {
+        res.redirect('/');
+    })
+    .catch(function (err) {
+        throw err
+    })
+})
+
+//cancella i post che l'utente ha selezionato
 router.post('/deletepost', function (req, res) {
     postController.deletePostsByIds(req.body.postDelete)
         .then(function () {

@@ -1,3 +1,5 @@
+//schema per post del blog
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;

@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const fetch = require('node-fetch');
 
 const postController = require('../controllers/postController');
-const fetch = require('node-fetch');
+const eventController = require('../controllers/eventController');
 
 
 /* GET home page. */
 router.get('/', function (req, res) {
-
-  postController.getPosts()
-    .then(function (posts) {
-      res.render('index', { title: 'URCA sezione di Cremona', blogPosts: posts });
+  var arrPromises = [];
+  arrPromises.push(postController.getPosts());
+  arrPromises.push(eventController.getEventsAscendingDateFromToday());
+  Promise.all(arrPromises)
+    .then(function (arr) {
+      res.render('index', { title: 'URCA sezione di Cremona', blogPosts: arr[0], events: arr[1] });
     })
-
 });
 
 router.get('/post/:postId', function (req, res) {
@@ -24,22 +26,15 @@ router.get('/post/:postId', function (req, res) {
 })
 
 router.get('/weatherdata', function (req, res) {
-  fetch(`https://api.openweathermap.org/data/2.5/group?id=3177838,3171058,3171457,3169522&units=metric&lang=it&appid=${process.env.OPA_KEY}`)
-    .then(function(result){
-      new Promise(function(resolve, reject){
-        // var dest = fs.createWriteStream('./result');
+  fetch(`https://api.openweathermap.org/data/2.5/group?id=3177838,3171058,3171457,3169522&units=metric&lang=it&appid=${process.env.OWM_KEY}`)
+    .then(function (result) {
+      new Promise(function (resolve, reject) {
         result.body.pipe(res);
 
         result.body.on('end', () => resolve());
         res.on('error', reject);
       })
         .then(res.end());
-      // result.json()
-      // .then(function(data){
-      //   res.json(data)
-      // })
-
-      
     })
 })
 

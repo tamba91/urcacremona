@@ -78,6 +78,10 @@ input, button {
   display: none;
 }
 
+#weather-row {
+  background-color: lightsteelblue;
+}
+
 .info-weather {
   width: 25%;
   text-transform: uppercase;
@@ -96,8 +100,42 @@ input, button {
   height: auto;
 }
 
-#weather-row {
-  background-color: lightsteelblue;
+.board-container {
+  background-color: #f0f1f1;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+table{
+  width: 100%;
+}
+
+tbody tr:nth-child(odd){
+  background-color: white;
+
+}
+
+tbody tr:nth-child(even){
+  background-color: #f4f5f5;
+
+}
+
+.event-date {
+  color: white;
+  background-color: #FF5434;
+  text-align: center;
+  padding: 5px;
+  font-size: small;
+}
+
+.event-text {
+  padding: 5px;
+  width: 85%;
+}
+
+.date-day {
+  font-weight: bold;
+  font-size: large;
 }
 
 #download-box ul {

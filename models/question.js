@@ -1,3 +1,5 @@
+//schema domanda collection questions su mongodb
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;

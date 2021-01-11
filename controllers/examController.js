@@ -1,3 +1,5 @@
+//controller per lo svolgimento della simulazione degli esami
+
 const exam = require('../models/exam');
 const questionController = require('../controllers/questionController.js');
 
@@ -21,5 +23,4 @@ exports.getExamByType = function (examType) {
             return arrPromises;
         })
     )
-
 }

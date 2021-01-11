@@ -9,8 +9,7 @@ block content
           i(class='fa fa-sign-out' aria-hidden='true')
     div(class='row')
       h6 Ciao #{firstName},
-      a(href='#' id='passwd-form-show') Vuoi cambiare la password?      
-      h6 Cambia la password
+      h6 Vuoi cambiare la password?      
       form(method='POST' action='/areariservata/changepasswd')
         input(type="password" id='old-password' placeholder='Vecchia password' name='oldPassword' required='required' class='u-full-width')
         input(type="password" id='new-password' placeholder='Nuova password' name='newPassword' required='required' class='u-full-width')
@@ -20,6 +19,7 @@ block content
           p(class='err-msg')
             i(class="fa fa-exclamation-triangle" aria-hidden="true")
             | #{errMsgCpwd}
+    hr
     div(class='row')
       h5
         i(class="fa fa-users" aria-hidden="true") 
@@ -45,6 +45,27 @@ block content
           p(class='err-msg')
             i(class="fa fa-exclamation-triangle" aria-hidden="true")
             | #{errMsgAddUsr}
+    hr
+    div(class='row')
+      h5 Gestione eventi in bacheca
+      div(class='row')
+          div(class='six columns')
+            button(class='button-primary' class='u-full-width' id='new-event-button') Nuovo Evento
+          div(class='six columns')
+            button(class='button-primary' class='u-full-width' id='delete-event-button') Cancella Evento
+            
+      form(method='POST' action='/areariservata/newevent' enctype='application/x-www-form-urlencoded' id='new-event-form')
+        label(for='event-date') Data
+        input(type="date" id='event-date' name='eventDate')
+        label(for='event-text') Testo
+        textarea(id='event-text' class='u-full-width' name='eventText')
+        button(class='button-primary' type='submit') Aggiungi evento
+      
+      form(method='POST' action='/areariservata/deleteevent' enctype='application/x-www-form-urlencoded' id='delete-event-form')
+        label(for='delete-post-form') Elimina evento
+        div(id='events-checkbox-container')
+        button(class='button-primary' type='submit') Elimina gli eventi selezionati
+    hr
     div(class='row')
       h5 Gestione area Downloads
       form(method='POST' action='/areariservata/upload' enctype='multipart/form-data') 
@@ -63,14 +84,14 @@ block content
               span(class="label-body")= file.split('_-_')[1]
           //- a(href=`/uploads/${file}`)= file.split('_-_')[1]
         button(type='submit' class='button-primary') ELIMINA 
-
+    hr
     div(class='row')
       h5 Gestione Posts
-        div(class='row')
-          div(class='six columns')
-            button(class='button-primary' class='u-full-width' id='new-post-button') Nuovo Post
-          div(class='six columns')
-            button(class='button-primary' class='u-full-width' id='delete-post-button') Elimina Post
+      div(class='row')
+        div(class='six columns')
+          button(class='button-primary' class='u-full-width' id='new-post-button') Nuovo Post
+        div(class='six columns')
+          button(class='button-primary' class='u-full-width' id='delete-post-button') Elimina Post
       
       form(method='POST' action='/areariservata/newpost' enctype='multipart/form-data' id='new-post-form') 
         label(for="post-title") Titolo

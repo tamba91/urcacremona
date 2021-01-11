@@ -6,15 +6,14 @@ block content
     div(class='container')
         div(class='row' class='page-title')
             div(class='nine columns')
-                h4 Esercitazione
+                h4= title
             div(class='three columns')
                 img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo.png")
         br
         form(id='trainingForm')
             each question, i in questionList
                 div(class='u-full-width' class='question-box')
-                    span(class='question-arg')
-                        h6= question.Argomento
+                    h6(class='question-arg')= question.Argomento
                     fieldset
                         legend(class='question')= `${i + 1}) ${question.Domanda}` 
                         each risposta, j in question.Risposte

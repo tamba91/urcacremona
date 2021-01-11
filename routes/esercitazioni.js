@@ -1,8 +1,10 @@
+//pagina gestione esercitazioni
+
 const express = require('express');
 const router = express.Router();
 const questionController = require('../controllers/questionController');
 
-
+//fetch da DB argomenti 
 router.get('/', function (req, res) {
     questionController.getArgs()
         .then(function (args) {
@@ -14,6 +16,7 @@ router.get('/', function (req, res) {
 
 })
 
+//fetch numero di domande per argomento
 router.get('/count/', function (req, res) {
     questionController.getQuestionsNumberByArg(req.query.argomento)
         .then(function (num) {
@@ -24,6 +27,7 @@ router.get('/count/', function (req, res) {
         })
 })
 
+//render training dopo fetch domande
 router.get('/init/', function (req, res) {
     questionController.getRandomQuestionsByArg(req.query.argomento, req.query.num)
         .then(function (questions) {

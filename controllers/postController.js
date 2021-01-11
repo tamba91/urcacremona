@@ -1,4 +1,5 @@
-const { pseudoRandomBytes } = require('crypto');
+//controller per la gestione dei post del blog su mongodb
+
 const fs = require('fs')
 const util = require('util');
 const unLink = util.promisify(fs.unlink);

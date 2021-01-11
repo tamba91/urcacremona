@@ -6,13 +6,24 @@ block content
       div(class='row')
         img(class='u-max-full-width' src='/images/URCA-ORIZZONTALE.jpg' id='urca-image') 
       div(class='row' id='weather-row')
-        //- div(class='info-weather')
-        //-   div(class='city-name')
-        //-   div(class='weather-icon')
-        //-   div(class='weather-desc')
-        //-   div(class='temperature-value')
 
-      hr(id='header-hr')
+    hr(id='header-hr')
+    -const mesiIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
+    div(class='board-container')
+      table
+        caption
+          h5 Eventi e appuntamenti
+           
+        tbody
+          each item in events
+            tr
+              td(class='event-date')
+                div= mesiIt[item.Data_Evento.getMonth()]
+                div
+                 span(class='date-day')= item.Data_Evento.getDate()
+                div= item.Data_Evento.getFullYear()
+              td(class='event-text')= item.Testo_Evento   
+          
     each item in blogPosts
       article
         div(class='row')

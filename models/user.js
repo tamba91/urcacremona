@@ -1,3 +1,5 @@
+//schema utente per la gestione degli amministratori
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;

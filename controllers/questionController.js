@@ -1,3 +1,5 @@
+//controller per la simulazione delle domande presenti su mongodb
+
 const question = require('../models/question');
 
 exports.getArgs = function () {
