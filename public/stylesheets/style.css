@@ -200,14 +200,14 @@ footer .container {
 
 @media (max-width: 400px) {
   .layout-container {
-    position: fixed;
+
     z-index: 2;
   }
 }
 
 @media (min-width: 400px) and (max-width: 550px) {
   .layout-container {
-    position: fixed;
+
     left: 7.5%;
     z-index: 2;
   }
@@ -221,7 +221,7 @@ footer .container {
 
 @media (min-width: 550px) and (max-width: 961px) {
   .layout-container {
-    position: fixed;
+
     left: 10%;
     z-index: 2;
   }
@@ -229,10 +229,12 @@ footer .container {
 
 @media (max-width: 961px) {
   .layout-container {
+    position: fixed;
     margin-top: 0;
   }
   .nav ul {
     display: none;
+    
     width: 100%;
     text-align: center;
   }

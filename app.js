@@ -46,11 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 app.use(compression());
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-);
+app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

@@ -21,7 +21,7 @@ function manageResults(wData) {
         weatherBox.appendChild(cityName)
 
         var weatherIcon = document.createElement('img')
-        weatherIcon.src = `https://openweathermap.org/img/wn/${wData.list[i].weather[0].icon}@2x.png`
+        weatherIcon.src = `/images/weathericons/${wData.list[i].weather[0].icon}@2x.png`
         weatherIcon.classList.add('weather-icon')
         weatherBox.appendChild(weatherIcon)
 
