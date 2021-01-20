@@ -31,10 +31,7 @@ router.get('/count/', function (req, res) {
 router.get('/init/', function (req, res) {
     questionController.getRandomQuestionsByArg(req.query.argomento, req.query.num)
         .then(function (questions) {
-            var answers = questions.map(val => {
-                return ({ name: val._id, value: val.Risposta_Esatta })
-            });
-            res.render('training', { title: `Esercitazione`, questionList: questions, answerList: JSON.stringify(answers) });
+            res.render('training', { title: `Esercitazione`, questionList: questions});
         })
 
 })

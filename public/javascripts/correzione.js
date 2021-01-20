@@ -1,18 +1,17 @@
-    var answers = document.querySelectorAll('.answer')
-    document.querySelector("form").addEventListener("submit", function (ev) {
-        ev.preventDefault();
+document.querySelector("form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
 
-        resolveForm("trainingForm", answerList, showResults);
+    resolveForm("trainingForm", showResults);
 
-    })
+})
 
-function resolveForm(formId, correctAnswersArray, resCb) {
+function resolveForm(formId, resCb) {
     var fieldsets = document.querySelectorAll(`#${formId} fieldset`);
     var results = { correct_answers: 0, wrong_answers: 0 };
     var breakCheck = false;
     for (i = 0; i < fieldsets.length; i++) {
         var radios = fieldsets[i].querySelectorAll("input[type='radio']")
-        var correctAnswer = correctAnswersArray[i].value;
+        var correctAnswer = fieldsets[i].getAttribute("data-correct-answer");
         for (j = 0; j < radios.length; j++) {
 
             if (radios[j].checked == true) {

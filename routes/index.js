@@ -36,6 +36,9 @@ router.get('/weatherdata', function (req, res) {
       })
         .then(res.end());
     })
+    .catch(function(err){
+      throw new Error('/weatherdata error');
+    })
 })
 
 module.exports = router;

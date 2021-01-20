@@ -15,11 +15,8 @@ router.get('/init', function (req, res) {
     examController.getExamByType(req.query.esame)
         .then(function (arrayOfPromises) {
             Promise.all(arrayOfPromises).then(function (result) {
-                var questions = result.flat(); //array di un solo livello
-                var answers = questions.map(val => {
-                    return ({ name: val._id, value: val.Risposta_Esatta })
-                });
-                res.render('training', { title: `Esame: ${req.query.esame}`, questionList: questions, answerList: JSON.stringify(answers) });
+
+                res.render('training', { title: `Esame: ${req.query.esame}`, questionList: questions });
             }
             )
         });
@@ -27,9 +24,9 @@ router.get('/init', function (req, res) {
 })
 
 //fetch info esame
-router.get('/examinfo/:type', function(req, res){
+router.get('/examinfo/:type', function (req, res) {
     examController.getExamInfoByType(req.params.type)
-        .then(function(examInfo){
+        .then(function (examInfo) {
             res.json(examInfo);
         })
 })
