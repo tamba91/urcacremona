@@ -8,21 +8,22 @@ block content
       div(class='row' id='weather-row')
 
     hr(id='header-hr')
-    -const mesiIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
-    div(class='board-container')
-      table
-        caption
-          h5 Eventi e appuntamenti
-           
-        tbody
-          each item in events
-            tr
-              td(class='event-date')
-                div= mesiIt[item.Data_Evento.getMonth()]
-                div
-                 span(class='date-day')= item.Data_Evento.getDate()
-                div= item.Data_Evento.getFullYear()
-              td(class='event-text')= item.Testo_Evento   
+    if events.length > 0
+      -const mesiIt = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
+        div(class='board-container')
+          table
+            caption
+              h5 Eventi e appuntamenti
+              
+            tbody
+              each item in events
+                tr
+                  td(class='event-date')
+                    div= mesiIt[item.Data_Evento.getMonth()]
+                    div
+                    span(class='date-day')= item.Data_Evento.getDate()
+                    div= item.Data_Evento.getFullYear()
+                  td(class='event-text')= item.Testo_Evento   
           
     each item in blogPosts
       article
