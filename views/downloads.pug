@@ -12,7 +12,7 @@ block content
                         each val, index in files
                             li 
                                 i(class="fa fa-download" aria-hidden="true")
-                                    a(href=files[index] download = 'download')= val.split('_-_')[1]    
+                                    a(href=files[index])= val.split('_-_')[1]    
             div(class='three columns')
                 img(class='u-max-full-width' class='urca-banner' src="/images/urca-logo.png") 
 
