@@ -74,7 +74,6 @@ router.post('/upload', function (req, res) {
             return res.send(req.fileValidationError);
         }
         else {
-            console.log(req.files)
             res.render('upload', { file: 'File caricati con successo' });
         }
     });
@@ -158,12 +157,11 @@ router.post('/delete', function (req, res) {
 
 //nuovo evento in bacheca
 router.post('/newevent', function(req, res){
-    console.log(req.body)
     eventController.createNewEvent(req.body.eventDate, req.body.eventText, req.user._id)
         .then(function(){
-            console.log('evento creato');
+            res.redirect('/')
         })
-    res.redirect('/')
+    
 })
 
 // nuovo post. da aggiungere cod. per dimensione max immagini 
