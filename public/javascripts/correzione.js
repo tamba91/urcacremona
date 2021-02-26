@@ -6,6 +6,7 @@ document.querySelector("form").addEventListener("submit", function (ev) {
 })
 
 function resolveForm(formId, resCb) {
+    const timeStamp = Date.now();
     var fieldsets = document.querySelectorAll(`#${formId} fieldset`);
     var results = { correct_answers: 0, wrong_answers: 0 };
     var breakCheck = false;
@@ -23,6 +24,7 @@ function resolveForm(formId, resCb) {
                 }
                 else {
                     results.wrong_answers += 1;
+                    localStorage.setItem(fieldsets[i].getAttribute("data-question-id"), timeStamp);
                     radios[j].parentNode.childNodes[1].style.backgroundColor = "#FF6347"
                     radios[correctAnswer].parentNode.childNodes[1].style.backgroundColor = "#90EE90"
                     breakCheck = true;
@@ -32,6 +34,7 @@ function resolveForm(formId, resCb) {
         }
         if (breakCheck == false) {
             results.wrong_answers += 1;
+            localStorage.setItem(fieldsets[i].getAttribute("data-question-id"), timeStamp);
             radios[correctAnswer].parentNode.childNodes[1].style.backgroundColor = "#90EE90"
             fieldsets[i].parentNode.style.backgroundColor = "#F08080"
         }

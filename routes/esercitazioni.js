@@ -31,9 +31,16 @@ router.get('/count/', function (req, res) {
 router.get('/init/', function (req, res) {
     questionController.getRandomQuestionsByArg(req.query.argomento, req.query.num)
         .then(function (questions) {
-            res.render('training', { title: `Esercitazione`, questionList: questions});
+            res.render('training', { title: `Esercitazione`, questionList: questions });
         })
 
+})
+
+router.post('/risposterrate/', function (req, res) {
+    questionController.getQuestionsById(JSON.parse(req.body.errAnswersIds))
+        .then(function (questions) {
+            res.render('training', { title: `Risposte Errate`, questionList: questions });;
+        })
 })
 
 module.exports = router;

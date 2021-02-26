@@ -12,7 +12,7 @@ block content
             each question, i in questionList
                 div(class='u-full-width' class='question-box')
                     h6(class='question-arg')= question.Argomento
-                    fieldset(data-correct-answer=`${question.Risposta_Esatta}`)
+                    fieldset(data-question-id=`${question._id}` data-correct-answer=`${question.Risposta_Esatta}`)
                         legend(class='question')= `${i + 1}) ${question.Domanda}` 
                         each risposta, j in question.Risposte
                             label(class='answer')

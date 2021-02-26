@@ -1,7 +1,18 @@
 var selecArg = document.querySelector('#arguemnts-list')
+var errform = document.querySelector('#errform')
 getNumberOfQuestions(`/esercitazioni/count?argomento=${encodeURIComponent(selecArg.value)}`, displayResults)
 selecArg.addEventListener('change', function () {
     getNumberOfQuestions(`/esercitazioni/count?argomento=${encodeURIComponent(selecArg.value)}`, displayResults)
+})
+
+errform.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'errAnswersIds'
+    hiddenField.value = JSON.stringify(Object.keys(localStorage));
+    errform.appendChild(hiddenField);
+    errform.submit();
 })
 
 function getNumberOfQuestions(url, manageData) {

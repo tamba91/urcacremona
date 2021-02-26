@@ -6,6 +6,10 @@ exports.getArgs = function () {
     return question.distinct('Argomento');
 }
 
+exports.getQuestionsById = function (ids) {
+    return question.find({'_id' : {$in : ids}}).sort({"Argomento" : 1})
+}
+
 exports.getAllQuestionsByArg = function (arg) {
     return question.find({ Argomento: arg });
 }
