@@ -23,7 +23,8 @@ block content
                     div
                     span(class='date-day')= item.Data_Evento.getDate()
                     div= item.Data_Evento.getFullYear()
-                  td(class='event-text')= item.Testo_Evento   
+                  td(class='event-text')
+                    | !{item.Testo_Evento}   
           
     each item in blogPosts
       article
