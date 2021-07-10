@@ -198,6 +198,14 @@ footer .container {
   font-size: small;
 }
 
+.tavola-comparativa{
+  font-size: smaller;
+}
+
+.tavola-comparativa td{
+  padding: 2px;
+}
+
 @media (max-width: 400px) {
   .layout-container {
 
@@ -269,3 +277,4 @@ footer .container {
     font-size: x-small;
   }
 }
+
