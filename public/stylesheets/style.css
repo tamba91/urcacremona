@@ -206,6 +206,10 @@ footer .container {
   padding: 2px;
 }
 
+.underline{
+  text-decoration: underline;
+}
+
 @media (max-width: 400px) {
   .layout-container {
 
