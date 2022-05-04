@@ -38,9 +38,11 @@ exports.getRandomQuestionsByArg = function (arg, num) {
                         'N': { $in: arr }
                     })
                 }
-                else return question.find({ Argomento: arg }).sort(N);
+                else return question.find({ Argomento: arg });
             })
         )
     }
-    else return question.find({ Argomento: arg })
+    else {
+        return question.find({ Argomento: arg }).sort('N')
+    }
 }

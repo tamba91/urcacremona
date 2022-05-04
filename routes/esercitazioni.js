@@ -33,6 +33,9 @@ router.get('/init/', function (req, res) {
         .then(function (questions) {
             res.render('training', { title: `Esercitazione`, questionList: questions });
         })
+        .catch( function (e) {
+            console.log(e);
+        })
 
 })
 
